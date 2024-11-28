@@ -112,6 +112,10 @@ public class UserInfoSlot : UIListItem
 
     public void SetDeath()
     {
+        for (int i = 0; i < 5; i++)
+        {
+            hpGauges[i].SetActive(false);
+        }
         death.SetActive(true);
         SetVisibleRole(true);
     }

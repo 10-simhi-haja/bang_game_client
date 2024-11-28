@@ -268,6 +268,13 @@ public class UIGame : UIBase
 
     public void SetDeath(long id)
     {
-        userslots[id].SetDeath();
+        if (userslots.ContainsKey(id))
+        {
+            userslots[id].SetDeath();
+        }
+        else
+        {
+            userInfoSlot.SetDeath();
+        }
     }
 }

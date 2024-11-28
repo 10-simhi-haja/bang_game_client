@@ -211,6 +211,7 @@ public abstract class TCPSocketManagerBase<T> : MonoSingleton<T> where T : TCPSo
     public void Send(GamePacket gamePacket)
     {
         if (socket == null) return;
+        Debug.Log("TEST!!!!!!!!!!! " + gamePacket);
         var byteArray = gamePacket.ToByteArray();
         var packet = new Packet(gamePacket.PayloadCase, version, sequenceNumber++, byteArray);
         sendQueue.Enqueue(packet);

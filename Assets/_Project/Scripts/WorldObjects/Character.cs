@@ -22,18 +22,8 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
     [SerializeField] private GameObject death;
     [SerializeField] private CircleCollider2D collider;
     [SerializeField] public GameObject stop;
-    //속도 증가 및 디버프와 관련된 변수들
-    [SerializeField] private float speed;
-    [SerializeField] private float baseSpeed = 3;       // 기본 속도
-    [SerializeField] private float boostSpeed = 5;      // 속도 증가 시 속도
-    [SerializeField] private float debuffSpeed = 2;     // 디버프 시 속도
-    [SerializeField] private float maxGauge = 100;       // 게이지 최대치
-    [SerializeField] private float gaugeDecayRate = 5;   // 게이지 감소 속도
-    [SerializeField] private float debuffDuration = 2;   // 디버프 지속 시간(초)
 
-    private float currentGauge = 0;
-    private bool isDebuffed = false;
-    private float debuffTimer = 0;
+    [SerializeField] private float speed = 3;
 
     [HideInInspector] public UserInfo userInfo;
 
@@ -161,7 +151,7 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
             isInside = true;
             if (userInfo != null)
                 OnVisibleMinimapIcon(Util.GetDistance(UserInfo.myInfo.index, userInfo.index, DataManager.instance.users.Count)
-                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // 가능한 거리에 있는 유저 아이콘만 표시
+                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // ������ �Ÿ��� �ִ� ���� �����ܸ� ǥ��
 
         }
     }
@@ -177,7 +167,7 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
             isInside = false;
             if (userInfo != null)
                 OnVisibleMinimapIcon(Util.GetDistance(UserInfo.myInfo.index, userInfo.index, DataManager.instance.users.Count)
-                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // 가능한 거리에 있는 유저 아이콘만 표시
+                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // ������ �Ÿ��� �ִ� ���� �����ܸ� ǥ��
         }
     }
 
@@ -197,40 +187,6 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
     {
         if(fsm != null)
             fsm.UpdateState();
-
-        // 디버프 상태 체크
-        if (isDebuffed)
-        {
-            debuffTimer += Time.deltaTime;
-            if (debuffTimer >= debuffDuration)
-            {
-                debuffTimer = 0f;
-                isDebuffed = false;
-                speed = baseSpeed;  // 디버프 해제 후 기본 속도로 복구
-            }
-        }
-        else
-        {
-            // Shift 키를 눌러 속도 증가
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                speed = boostSpeed;
-                currentGauge += Time.deltaTime * 20f; // 게이지 증가 속도
-                if (currentGauge >= maxGauge)
-                {
-                    isDebuffed = true;
-                    speed = debuffSpeed;
-                }
-            }
-            else
-            {
-                speed = baseSpeed;
-                currentGauge -= Time.deltaTime * gaugeDecayRate;
-            }
-
-            // 게이지 값 제한
-            currentGauge = Mathf.Clamp(currentGauge, 0, maxGauge);
-        }
     }
 
     public async void SetDeath()

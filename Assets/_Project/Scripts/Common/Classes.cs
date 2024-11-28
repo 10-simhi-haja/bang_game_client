@@ -25,7 +25,7 @@ public partial class UserInfo
     public int slotRange { get => 1 + (isRaider ? 1 : 0) + (selectedCharacterRcode == "CHA00009" ? 1 : 0); }
     public int slotFar { get => (isStelth ? 1 : 0) + (selectedCharacterRcode == "CHA00012" ? 1 : 0); }
 
-    public bool isMultiShotCharacter { get => selectedCharacterRcode == "CHA00003" ? true : false; }
+    public bool isMultiShotCharacter { get => selectedCharacterRcode == "CHA00003"; }
 
     public int needShieldCount { get => (equips.Find(obj => obj.rcode == "CAD00017") == null ? 1 : 2) + (isMultiShotCharacter ? 1 : 0); }
 
