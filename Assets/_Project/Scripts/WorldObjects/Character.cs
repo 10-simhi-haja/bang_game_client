@@ -22,14 +22,15 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
     [SerializeField] private GameObject death;
     [SerializeField] private CircleCollider2D collider;
     [SerializeField] public GameObject stop;
-    //ì†ë„ ì¦ê°€ ë° ë””ë²„í”„ì™€ ê´€ë ¨ëœ ë³€ìˆ˜ë“¤
+
+    //¼Óµµ Áõ°¡ ¹× µð¹öÇÁ¿Í °ü·ÃµÈ º¯¼öµé
     [SerializeField] private float speed;
-    [SerializeField] private float baseSpeed = 3;       // ê¸°ë³¸ ì†ë„
-    [SerializeField] private float boostSpeed = 5;      // ì†ë„ ì¦ê°€ ì‹œ ì†ë„
-    [SerializeField] private float debuffSpeed = 2;     // ë””ë²„í”„ ì‹œ ì†ë„
-    [SerializeField] private float maxGauge = 100;       // ê²Œì´ì§€ ìµœëŒ€ì¹˜
-    [SerializeField] private float gaugeDecayRate = 5;   // ê²Œì´ì§€ ê°ì†Œ ì†ë„
-    [SerializeField] private float debuffDuration = 2;   // ë””ë²„í”„ ì§€ì† ì‹œê°„(ì´ˆ)
+    [SerializeField] private float baseSpeed = 3;       // ±âº» ¼Óµµ
+    [SerializeField] private float boostSpeed = 5;      // ¼Óµµ Áõ°¡ ½Ã ¼Óµµ
+    [SerializeField] private float debuffSpeed = 2;     // µð¹öÇÁ ½Ã ¼Óµµ
+    [SerializeField] private float maxGauge = 100;       // °ÔÀÌÁö ÃÖ´ëÄ¡
+    [SerializeField] private float gaugeDecayRate = 5;   // °ÔÀÌÁö °¨¼Ò ¼Óµµ
+    [SerializeField] private float debuffDuration = 2;   // µð¹öÇÁ Áö¼Ó ½Ã°£(ÃÊ)
 
     private float currentGauge = 0;
     private bool isDebuffed = false;
@@ -161,7 +162,7 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
             isInside = true;
             if (userInfo != null)
                 OnVisibleMinimapIcon(Util.GetDistance(UserInfo.myInfo.index, userInfo.index, DataManager.instance.users.Count)
-                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // ê°€ëŠ¥í•œ ê±°ë¦¬ì— ìžˆëŠ” ìœ ì € ì•„ì´ì½˜ë§Œ í‘œì‹œ
+                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // °¡´ÉÇÑ °Å¸®¿¡ ÀÖ´Â À¯Àú ¾ÆÀÌÄÜ¸¸ Ç¥½Ã
 
         }
     }
@@ -177,7 +178,7 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
             isInside = false;
             if (userInfo != null)
                 OnVisibleMinimapIcon(Util.GetDistance(UserInfo.myInfo.index, userInfo.index, DataManager.instance.users.Count)
-                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // ê°€ëŠ¥í•œ ê±°ë¦¬ì— ìžˆëŠ” ìœ ì € ì•„ì´ì½˜ë§Œ í‘œì‹œ
+                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // °¡´ÉÇÑ °Å¸®¿¡ ÀÖ´Â À¯Àú ¾ÆÀÌÄÜ¸¸ Ç¥½Ã
         }
     }
 
@@ -198,7 +199,7 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
         if(fsm != null)
             fsm.UpdateState();
 
-        // ë””ë²„í”„ ìƒíƒœ ì²´í¬
+        // µð¹öÇÁ »óÅÂ Ã¼Å©
         if (isDebuffed)
         {
             debuffTimer += Time.deltaTime;
@@ -206,16 +207,16 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
             {
                 debuffTimer = 0f;
                 isDebuffed = false;
-                speed = baseSpeed;  // ë””ë²„í”„ í•´ì œ í›„ ê¸°ë³¸ ì†ë„ë¡œ ë³µêµ¬
+                speed = baseSpeed;  // µð¹öÇÁ ÇØÁ¦ ÈÄ ±âº» ¼Óµµ·Î º¹±¸
             }
         }
         else
         {
-            // Shift í‚¤ë¥¼ ëˆŒëŸ¬ ì†ë„ ì¦ê°€
+            // Shift Å°¸¦ ´­·¯ ¼Óµµ Áõ°¡
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 speed = boostSpeed;
-                currentGauge += Time.deltaTime * 20f; // ê²Œì´ì§€ ì¦ê°€ ì†ë„
+                currentGauge += Time.deltaTime * 20f; // °ÔÀÌÁö Áõ°¡ ¼Óµµ
                 if (currentGauge >= maxGauge)
                 {
                     isDebuffed = true;
@@ -228,7 +229,7 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
                 currentGauge -= Time.deltaTime * gaugeDecayRate;
             }
 
-            // ê²Œì´ì§€ ê°’ ì œí•œ
+            // °ÔÀÌÁö °ª Á¦ÇÑ
             currentGauge = Mathf.Clamp(currentGauge, 0, maxGauge);
         }
     }
