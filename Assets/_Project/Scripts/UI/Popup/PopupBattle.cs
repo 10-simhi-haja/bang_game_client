@@ -37,6 +37,7 @@ public class PopupBattle : UIListBase<Card>
         uiPagingViewController.OnMoveEnd += OnMoveEnd;
         title.text = targetCard.displayName;
         AddUseCard(targetCard);
+        SetUserSelectTurn(10);
     }
 
     public void SetActiveControl(bool isActive)
