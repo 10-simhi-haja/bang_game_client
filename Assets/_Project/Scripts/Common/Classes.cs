@@ -101,6 +101,7 @@ public partial class UserInfo
             handCards.Clear();
             equips.Clear();
             debuffs.Clear();
+            weapon = null;
             foreach (var card in userData.Character.HandCards)
             {
                 for (int i = 0; i < card.Count; i++)
