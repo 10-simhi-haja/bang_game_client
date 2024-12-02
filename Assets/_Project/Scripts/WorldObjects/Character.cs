@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ironcow;
@@ -23,14 +23,13 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
     [SerializeField] private CircleCollider2D collider;
     [SerializeField] public GameObject stop;
 
-    //¼Óµµ Áõ°¡ ¹× µð¹öÇÁ¿Í °ü·ÃµÈ º¯¼öµé
     [SerializeField] private float speed;
-    [SerializeField] private float baseSpeed = 3;       // ±âº» ¼Óµµ
-    [SerializeField] private float boostSpeed = 5;      // ¼Óµµ Áõ°¡ ½Ã ¼Óµµ
-    [SerializeField] private float debuffSpeed = 2;     // µð¹öÇÁ ½Ã ¼Óµµ
-    [SerializeField] private float maxGauge = 100;       // °ÔÀÌÁö ÃÖ´ëÄ¡
-    [SerializeField] private float gaugeDecayRate = 5;   // °ÔÀÌÁö °¨¼Ò ¼Óµµ
-    [SerializeField] private float debuffDuration = 2;   // µð¹öÇÁ Áö¼Ó ½Ã°£(ÃÊ)
+    [SerializeField] private float baseSpeed = 3;
+    [SerializeField] private float boostSpeed = 5;
+    [SerializeField] private float debuffSpeed = 2;
+    [SerializeField] private float maxGauge = 100;
+    [SerializeField] private float gaugeDecayRate = 5;
+    [SerializeField] private float debuffDuration = 2;
 
     private float currentGauge = 0;
     private bool isDebuffed = false;
@@ -107,7 +106,14 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
 
     public void OnChangeState<T>() where T : CharacterState
     {
-        ChangeState<T>().SetElement(anim, rig, this);
+        if (states.ContainsKey(typeof(T).Name))
+        {
+            ChangeState<T>().SetElement(anim, rig, this);
+        }
+        else
+        {
+            CreateState<T>().SetElement(anim, rig, this);
+        }
     }
 
     public bool IsState<T>()
@@ -162,7 +168,7 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
             isInside = true;
             if (userInfo != null)
                 OnVisibleMinimapIcon(Util.GetDistance(UserInfo.myInfo.index, userInfo.index, DataManager.instance.users.Count)
-                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // °¡´ÉÇÑ °Å¸®¿¡ ÀÖ´Â À¯Àú ¾ÆÀÌÄÜ¸¸ Ç¥½Ã
+                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // ê°€ëŠ¥í•œ ê±°ë¦¬ì— ìžˆëŠ” ìœ ì € ì•„ì´ì½˜ë§Œ í‘œì‹œ
 
         }
     }
@@ -178,7 +184,7 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
             isInside = false;
             if (userInfo != null)
                 OnVisibleMinimapIcon(Util.GetDistance(UserInfo.myInfo.index, userInfo.index, DataManager.instance.users.Count)
-                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // °¡´ÉÇÑ °Å¸®¿¡ ÀÖ´Â À¯Àú ¾ÆÀÌÄÜ¸¸ Ç¥½Ã
+                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // ê°€ëŠ¥í•œ ê±°ë¦¬ì— ìžˆëŠ” ìœ ì € ì•„ì´ì½˜ë§Œ í‘œì‹œ
         }
     }
 
@@ -199,7 +205,6 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
         if(fsm != null)
             fsm.UpdateState();
 
-        // µð¹öÇÁ »óÅÂ Ã¼Å©
         if (isDebuffed)
         {
             debuffTimer += Time.deltaTime;
@@ -207,16 +212,15 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
             {
                 debuffTimer = 0f;
                 isDebuffed = false;
-                speed = baseSpeed;  // µð¹öÇÁ ÇØÁ¦ ÈÄ ±âº» ¼Óµµ·Î º¹±¸
+                speed = baseSpeed;
             }
         }
         else
         {
-            // Shift Å°¸¦ ´­·¯ ¼Óµµ Áõ°¡
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 speed = boostSpeed;
-                currentGauge += Time.deltaTime * 20f; // °ÔÀÌÁö Áõ°¡ ¼Óµµ
+                currentGauge += Time.deltaTime * 20f;
                 if (currentGauge >= maxGauge)
                 {
                     isDebuffed = true;
@@ -229,7 +233,6 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
                 currentGauge -= Time.deltaTime * gaugeDecayRate;
             }
 
-            // °ÔÀÌÁö °ª Á¦ÇÑ
             currentGauge = Mathf.Clamp(currentGauge, 0, maxGauge);
         }
     }

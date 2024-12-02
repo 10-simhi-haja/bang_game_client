@@ -37,7 +37,6 @@ public class SpriteAnimation :
         if (isEmptySlot)
         {
             var sprites = await ResourceManager.instance.LoadAssets<Sprite>(name.Replace("(Clone)", ""), eAddressableType.Images);
-            Debug.Log($"Loaded Sprites for {name}: {sprites.Count}");
             foreach (var ani in animations)
             {
                 ani.sprites = sprites.FindAll(obj => obj.name.Contains(ani.key));
@@ -74,18 +73,11 @@ public class SpriteAnimation :
         {
             nowFrame = 0;
             nowIndex = 0;
-            if (nowAnimation.sprites.Count > 0)
+            spriteRenderer.sprite = nowAnimation.sprites[nowIndex];
+            if(nowAnimation.sprites.Count > 10)
             {
-                spriteRenderer.sprite = nowAnimation.sprites[nowIndex];
-                if (nowAnimation.sprites.Count > 10)
-                {
-                    //moveToFrame = 20f - 20f / ((float)nowAnimation.sprites.Count - 10f);
-                    moveToFrame = 20f / ((float)nowAnimation.sprites.Count - 10f) + 2;
-                }
-            }
-            else
-            {
-                Debug.LogWarning($"Animation '{key}' has no sprites!");
+                //moveToFrame = 20f - 20f / ((float)nowAnimation.sprites.Count - 10f);
+                moveToFrame = 20f / ((float)nowAnimation.sprites.Count - 10f) + 2;
             }
         }
     }

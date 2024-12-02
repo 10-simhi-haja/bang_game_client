@@ -38,7 +38,8 @@ public class PopupDeck : UIListBase<Card>
 
     public void OnChangeValue(int idx)
     {
-        use.interactable = UserInfo.myInfo.handCards[idx].isUsable;
+        if(idx >= 0 && idx < UserInfo.myInfo.handCards.Count)
+            use.interactable = UserInfo.myInfo.handCards[idx].isUsable;
     }
 
     public override void HideDirect()

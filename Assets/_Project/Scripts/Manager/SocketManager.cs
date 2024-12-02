@@ -404,7 +404,7 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
                     case eCharacterState.GUERRILLA_TARGET:
                         {
                             var card = DataManager.instance.GetData<CardDataSO>("CAD00007");
-                            if (user.handCards.Find(obj => obj.rcode == card.rcode))
+                            if (user.handCards.Find(obj => obj.rcode == card.defCard))
                             {
                                 targetCharacter.OnChangeState<CharacterStopState>();
                                 var ui = await UIManager.Show<PopupBattle>(card.rcode, targetId, callback);
@@ -425,7 +425,7 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
                     case eCharacterState.BIG_BBANG_TARGET:
                         {
                             var card = DataManager.instance.GetData<CardDataSO>("CAD00002");
-                            if (user.handCards.Find(obj => obj.rcode == card.rcode))
+                            if (user.handCards.Find(obj => obj.rcode == card.defCard))
                             {
                                 targetCharacter.OnChangeState<CharacterStopState>();
                                 var ui = await UIManager.Show<PopupBattle>(card.rcode, targetId, callback);

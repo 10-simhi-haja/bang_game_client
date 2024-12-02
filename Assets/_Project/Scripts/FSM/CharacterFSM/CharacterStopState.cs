@@ -8,6 +8,7 @@ public class CharacterStopState : CharacterState
     public override void OnStateEnter()
     {
         character.stop.SetActive(true);
+        rigidbody.linearVelocity = Vector3.zero;
     }
 
     public override void OnStateExit()

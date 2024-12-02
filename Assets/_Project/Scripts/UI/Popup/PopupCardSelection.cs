@@ -114,6 +114,7 @@ public class PopupCardSelection : UIListBase<Card>
 
     public void OnClickUse()
     {
+        if (selectCard == null) return;
         if (SocketManager.instance.isConnected)
         {
             GamePacket packet = new GamePacket();
