@@ -234,11 +234,11 @@ public class UIGame : UIBase
     {
         if (isAlert)
         {
-            StartCoroutine(BombAlert());
+            StartCoroutine("BombAlert");
         }
         else
         {
-            StopCoroutine(BombAlert());
+            StopCoroutine("BombAlert");
             bombButton.color = Color.white;
         }
     }
@@ -251,9 +251,9 @@ public class UIGame : UIBase
         {
             bombButton.color = new Color(1, col, col);
             yield return null;
-            col += 0.1f * (isDown ? -1 : 1);
-            if (col <= 0) isDown = true;
-            if (col >= 1) isDown = false;
+            col += 0.05f * (isDown ? -1 : 1);
+            if (col <= 0) isDown = false;
+            if (col >= 1) isDown = true;
         }
     }
 
