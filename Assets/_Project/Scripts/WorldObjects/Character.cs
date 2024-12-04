@@ -1,4 +1,4 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ironcow;
@@ -92,9 +92,9 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
         if (agent.velocity.x != 0)
             anim.SetFlip(isLeft);
         if (agent.velocity == Vector3.zero)
-            ChangeState<CharacterIdleState>().SetElement(anim, rig, this);
+            OnChangeState<CharacterIdleState>();
         else
-            ChangeState<CharacterWalkState>().SetElement(anim, rig, this);
+            OnChangeState<CharacterWalkState>();
     }
 
     public void SetPosition(Vector3 pos)
@@ -108,11 +108,11 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
     {
         if (states.ContainsKey(typeof(T).Name))
         {
-            ChangeState<T>().SetElement(anim, rig, this);
+            ChangeState<T>()?.SetElement(anim, rig, this);
         }
         else
         {
-            CreateState<T>().SetElement(anim, rig, this);
+            CreateState<T>()?.SetElement(anim, rig, this);
         }
     }
 
@@ -168,7 +168,7 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
             isInside = true;
             if (userInfo != null)
                 OnVisibleMinimapIcon(Util.GetDistance(UserInfo.myInfo.index, userInfo.index, DataManager.instance.users.Count)
-                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // ê°€ëŠ¥í•œ ê±°ë¦¬ì— ìžˆëŠ” ìœ ì € ì•„ì´ì½˜ë§Œ í‘œì‹œ
+                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // °¡´ÉÇÑ °Å¸®¿¡ ÀÖ´Â À¯Àú ¾ÆÀÌÄÜ¸¸ Ç¥½Ã
 
         }
     }
@@ -184,7 +184,7 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
             isInside = false;
             if (userInfo != null)
                 OnVisibleMinimapIcon(Util.GetDistance(UserInfo.myInfo.index, userInfo.index, DataManager.instance.users.Count)
-                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // ê°€ëŠ¥í•œ ê±°ë¦¬ì— ìžˆëŠ” ìœ ì € ì•„ì´ì½˜ë§Œ í‘œì‹œ
+                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // °¡´ÉÇÑ °Å¸®¿¡ ÀÖ´Â À¯Àú ¾ÆÀÌÄÜ¸¸ Ç¥½Ã
         }
     }
 
@@ -252,6 +252,6 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
         if (!IsState<CharacterDeathState>())
             return base.ChangeState<T>();
         else
-            return currentState == null ? null : (T)currentState;
+            return null;
     }
 }
