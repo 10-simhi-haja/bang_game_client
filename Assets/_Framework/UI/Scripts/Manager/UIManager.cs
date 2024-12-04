@@ -32,6 +32,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public static async Task<T> Show<T>(params object[] param) where T : UIBase
     {
+        instance.uiList.RemoveAll(obj => obj == null);
         var ui = instance.uiList.Find(obj => obj.name == typeof(T).ToString());
         if (ui == null)
         {
