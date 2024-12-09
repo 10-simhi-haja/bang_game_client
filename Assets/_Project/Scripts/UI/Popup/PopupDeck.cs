@@ -103,7 +103,9 @@ public class PopupDeck : UIListBase<Card>
 
     public void OnClickItem(CardDataSO data)
     {
-        
+        var idx = Mathf.Clamp(uiPagingViewController.selectedIdx, 0, UserInfo.myInfo.handCards.Count);
+        if (idx >= 0 && idx < UserInfo.myInfo.handCards.Count)
+            use.interactable = UserInfo.myInfo.handCards[idx].isUsable;
     }
 
     private void OnMoveStart()
