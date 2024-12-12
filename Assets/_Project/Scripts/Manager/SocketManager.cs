@@ -42,6 +42,8 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
     {
         var response = gamePacket.CreateRoomResponse;
         Debug.Log("failcode : " + response.FailCode.ToString());
+        //var channelName = response.Room.Id.ToString();
+        //VivoxController.Instance.JoinVoiceChannel(channelName);
         UIManager.Get<PopupRoomCreate>().OnRoomCreateResult(response.Success, response.Room);
     }
 
@@ -58,6 +60,8 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
         var response = gamePacket.JoinRoomResponse;
         if (response.Success)
         {
+            //var channelName = response.Room.Id.ToString();
+            //VivoxController.Instance.JoinVoiceChannel(channelName);
             UIManager.Show<UIRoom>(response.Room);
         }
     }
@@ -72,6 +76,8 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
         }
         else if(response.Success)
         {
+            //var channelName = response.Room.Id.ToString();
+            //VivoxController.Instance.JoinVoiceChannel(channelName);
             UIManager.Show<UIRoom>(response.Room);
         }
     }

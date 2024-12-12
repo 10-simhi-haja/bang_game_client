@@ -26,6 +26,10 @@ public class UIRoom : UIBase
         UIManager.Hide<UIGnb>();
         roomData = (RoomData)param[0];
         SetRoomInfo(roomData);
+        var channelName = roomData.Id.ToString();
+        Debug.Log("음성채널 참가");
+        Debug.Log(channelName);
+        VivoxController.Instance.JoinVoiceChannel(channelName);
     }
 
     public void SetRoomInfo(RoomData roomData)
@@ -192,6 +196,9 @@ public class UIRoom : UIBase
             GamePacket packet = new GamePacket();
             packet.LeaveRoomRequest = new C2SLeaveRoomRequest();
             SocketManager.instance.Send(packet);
+
+            var channelName = roomData.Id.ToString();
+            VivoxController.Instance.LeaveChannelAsync(channelName);
         }
         else
         {
