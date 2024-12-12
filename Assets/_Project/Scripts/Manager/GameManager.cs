@@ -53,7 +53,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public async void Init()
     {
-        // Ä«µå µ¦À» ¸ÕÀú ±¸¼º
+        // Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         var deckDatas = DataManager.instance.GetDatas<DeckData>();
         var cards = new List<CardDataSO>();
         foreach (var deckData in deckDatas)
@@ -65,7 +65,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         worldDeck = new Queue<CardDataSO>(cards.Shuffle());
 
-        //À¯Àú Ä³¸¯ÅÍ ¼¼ÆÃ
+        //ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         var bounds = tilemapRenderer.bounds;
         var myIndex = DataManager.instance.users.FindIndex(obj => obj == UserInfo.myInfo); 
         spawns = new List<Transform>(spawnPoints);
@@ -77,7 +77,7 @@ public class GameManager : MonoSingleton<GameManager>
             chara.OnChangeState<CharacterStopState>();
             if (userinfo.roleType == eRoleType.target)
                 chara.SetTargetMark();
-            chara.OnVisibleMinimapIcon(Util.GetDistance(myIndex, i, DataManager.instance.users.Count) + userinfo.slotFar <= UserInfo.myInfo.slotRange && myIndex != i); // °¡´ÉÇÑ °Å¸®¿¡ ÀÖ´Â À¯Àú ¾ÆÀÌÄÜ¸¸ Ç¥½Ã
+            chara.OnVisibleMinimapIcon(Util.GetDistance(myIndex, i, DataManager.instance.users.Count) + userinfo.slotFar <= UserInfo.myInfo.slotRange && myIndex != i); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ü¸ï¿½ Ç¥ï¿½ï¿½
             chara.userInfo = userinfo;
             var data = DataManager.instance.GetData<CharacterDataSO>(userinfo.selectedCharacterRcode);
             userinfo.maxHp = data.health + (userinfo.roleType == eRoleType.target ? 1 : 0);
@@ -167,7 +167,7 @@ public class GameManager : MonoSingleton<GameManager>
         chara.OnChangeState<CharacterStopState>();
         if (userinfo.roleType == eRoleType.target)
             chara.SetTargetMark();
-        chara.OnVisibleMinimapIcon(Util.GetDistance(myIndex, idx, DataManager.instance.users.Count) <= UserInfo.myInfo.slotRange && myIndex != idx); // °¡´ÉÇÑ °Å¸®¿¡ ÀÖ´Â À¯Àú ¾ÆÀÌÄÜ¸¸ Ç¥½Ã
+        chara.OnVisibleMinimapIcon(Util.GetDistance(myIndex, idx, DataManager.instance.users.Count) <= UserInfo.myInfo.slotRange && myIndex != idx); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ü¸ï¿½ Ç¥ï¿½ï¿½
         chara.userInfo = userinfo;
     }
 
@@ -273,6 +273,7 @@ public class GameManager : MonoSingleton<GameManager>
             var cardIdx = useUserInfo.handCards.FindIndex(obj => obj.rcode == rcode);
             GamePacket packet = new GamePacket();
             //packet.UseCardRequest = new C2SUseCardRequest() { CardType = cardIdx, TargetUserId = userinfo == null ? "" : userinfo.id };
+            Debug.Log("ì¹´ë“œì‚¬ìš© ìš”ì²­ì¹´ë“œì‚¬ìš© ìš”ì²­ì¹´ë“œì‚¬ìš© ìš”ì²­ì¹´ë“œì‚¬ìš© ìš”ì²­ì¹´ë“œì‚¬ìš© ìš”ì²­ì¹´ë“œì‚¬ìš© ìš”ì²­ì¹´ë“œì‚¬ìš© ìš”ì²­ì¹´ë“œì‚¬ìš© ìš”ì²­ì¹´ë“œì‚¬ìš© ìš”ì²­ì¹´ë“œì‚¬ìš© ìš”ì²­ì¹´ë“œì‚¬ìš© ìš”ì²­ì¹´ë“œì‚¬ìš© ìš”ì²­ì¹´ë“œì‚¬ìš© ìš”ì²­ ");
             packet.UseCardRequest = new C2SUseCardRequest() { CardType = card.cardType, TargetUserId = userinfo == null ? 0 : userinfo.id };
             SocketManager.instance.Send(packet);
         }
