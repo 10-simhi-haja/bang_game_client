@@ -529,6 +529,15 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
     public void PhaseUpdateNotification(GamePacket gamePacket)
     {
         var response = gamePacket.PhaseUpdateNotification;
+        if (response.PhaseType == PhaseType.End)
+        {
+            AudioManager.instance.PlayBgm("nightbgm");
+        }
+
+        if (response.PhaseType == PhaseType.Day)
+        {
+            AudioManager.instance.PlayBgm("morningbgm");
+        }
 
         if (UIGame.instance != null)
             GameManager.instance.SetGameState(response.PhaseType, response.NextPhaseAt);
