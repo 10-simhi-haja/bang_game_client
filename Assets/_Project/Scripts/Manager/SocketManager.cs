@@ -140,8 +140,6 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
             UIManager.ShowAlert(response.FailCode.ToString(), "����");
             Debug.Log("GameStartResponse Failcode : " + response.FailCode.ToString());
         }
-        AudioManager.instance.PlayBgm("morningbgm",true);
-        Debug.Log(AudioManager.instance.isInit);
     }
 
     // ���� ����
@@ -179,6 +177,8 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
         }
         GameManager.instance.OnGameStart();
         GameManager.instance.SetGameState(response.GameState);
+        AudioManager.instance.PlayBgm("morningbgm",true);
+        Debug.Log(AudioManager.instance.isInit);
     }
 
     // ��ġ ������Ʈ
