@@ -196,6 +196,7 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
     public void UseCardResponse(GamePacket gamePacket)
     {
         var response = gamePacket.UseCardResponse;
+        
         if (response.Success)
         {
             if (UIManager.IsOpened<PopupDeck>())
@@ -218,6 +219,53 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
         {
             Debug.Log(AudioManager.instance.isInit);
             AudioManager.instance.PlayOneShot("bbang");
+        }
+
+        if (response.CardType == CardType.Shield)
+        {
+            AudioManager.instance.PlayOneShot("shield");
+        }
+        
+        if (response.CardType == CardType.FleaMarket)
+        {
+            AudioManager.instance.PlayOneShot("market");
+        }
+
+        if (response.UserId == UserInfo.myInfo.id)
+        {
+            switch (response.CardType)
+            {
+                case CardType.HandGun:
+                    AudioManager.instance.PlayOneShot("weapon");
+                    break;
+                case CardType.AutoRifle:
+                    AudioManager.instance.PlayOneShot("weapon");
+                    break;
+                case CardType.SniperGun:
+                    AudioManager.instance.PlayOneShot("weapon");
+                    break;
+                case CardType.DesertEagle:
+                    AudioManager.instance.PlayOneShot("weapon");
+                    break;
+                case CardType.LaserPointer:
+                    AudioManager.instance.PlayOneShot("eq");
+                    break;
+                case CardType.Radar:
+                    AudioManager.instance.PlayOneShot("eq");
+                    break;
+                case CardType.AutoShield:
+                    AudioManager.instance.PlayOneShot("eq");
+                    break;
+                case CardType.StealthSuit:
+                    AudioManager.instance.PlayOneShot("eq");
+                    break;
+                case CardType.MaturedSavings:
+                    AudioManager.instance.PlayOneShot("gold");
+                    break;
+                case CardType.WinLottery:
+                    AudioManager.instance.PlayOneShot("gold");
+                    break;
+            }
         }
 
         if (card.isTargetCardSelection && response.UserId == UserInfo.myInfo.id)
