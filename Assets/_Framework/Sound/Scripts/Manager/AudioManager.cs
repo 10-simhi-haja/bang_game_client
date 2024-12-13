@@ -17,6 +17,16 @@ public class AudioManager : MonoSingleton<AudioManager>
     public void Init()
     {
     }
+    private void OnValidate()
+    {
+#if !USE_AUTO_CACHING
+            source = GetComponent<AudioSource>();
+#endif
+        if(effect == null)
+        {
+            effect = gameObject.AddComponent<AudioSource>();
+        }
+    }
 
     public async void PlayBgm(string key, bool isLoop = true)
     {
@@ -32,6 +42,7 @@ public class AudioManager : MonoSingleton<AudioManager>
         if (!audioPool.ContainsKey(key))
             audioPool.Add(key, await ResourceManager.instance.LoadAsset<AudioClip>(key, eAddressableType.Audio));
         effect.PlayOneShot(audioPool[key]);
+        // 키는 파일 이름이다
     }
 
     public void StopBgm()
