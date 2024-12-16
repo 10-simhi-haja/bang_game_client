@@ -163,6 +163,10 @@ public class GameManager : MonoSingleton<GameManager>
     {
         var myIndex = DataManager.instance.users.FindIndex(obj => obj == UserInfo.myInfo);
         var chara = await AddCharacter(userinfo.selectedCharacterRcode, userinfo.id == UserInfo.myInfo.id ? eCharacterType.playable : eCharacterType.non_playable, userinfo.id);
+        if(userinfo.id == UserInfo.myInfo.id)
+        {
+            VivoxController.Instance.Join3DChannel(chara.gameObject, UIRoom.roomData.Id.ToString());
+        }
         //chara.transform.position = spawns.RandomPeek().position; //new Vector3(Util.Random(bounds.min.x, bounds.max.x), Util.Random(bounds.min.y, bounds.max.y));
         chara.OnChangeState<CharacterStopState>();
         if (userinfo.roleType == eRoleType.target)
@@ -382,12 +386,12 @@ public class GameManager : MonoSingleton<GameManager>
                     break;
                 case "CAD00011":
                     {
-
+                        AudioManager.instance.PlayOneShot("gold");
                     }
                     break;
                 case "CAD00012":
                     {
-
+                        AudioManager.instance.PlayOneShot("gold");
                     }
                     break;
                 case "CAD00021":
