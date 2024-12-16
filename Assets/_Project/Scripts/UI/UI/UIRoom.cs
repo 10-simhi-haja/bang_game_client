@@ -29,7 +29,7 @@ public class UIRoom : UIBase
         var channelName = roomData.Id.ToString();
         Debug.Log("음성채널 참가");
         Debug.Log(channelName);
-        // VivoxController.Instance.JoinVoiceChannel(channelName);
+        VivoxController.Instance.JoinVoiceChannel(channelName);
     }
 
     public void SetRoomInfo(RoomData roomData)

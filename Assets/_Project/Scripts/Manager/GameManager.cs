@@ -165,7 +165,7 @@ public class GameManager : MonoSingleton<GameManager>
         var chara = await AddCharacter(userinfo.selectedCharacterRcode, userinfo.id == UserInfo.myInfo.id ? eCharacterType.playable : eCharacterType.non_playable, userinfo.id);
         if(userinfo.id == UserInfo.myInfo.id)
         {
-            VivoxController.Instance.Join3DChannel(chara.gameObject, UIRoom.roomData.Id.ToString());
+            // VivoxController.Instance.Join3DChannel(chara.gameObject, UIRoom.roomData.Id.ToString());
         }
         //chara.transform.position = spawns.RandomPeek().position; //new Vector3(Util.Random(bounds.min.x, bounds.max.x), Util.Random(bounds.min.y, bounds.max.y));
         chara.OnChangeState<CharacterStopState>();
