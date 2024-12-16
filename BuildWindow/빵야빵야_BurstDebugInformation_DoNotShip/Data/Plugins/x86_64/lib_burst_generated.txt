@@ -1,4 +1,4 @@
-Library: C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
+Library: F:\sparta_final\bang_game_client\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --platform=Windows
 --backend=burst-llvm-16
 --target=X64_SSE2
@@ -9,10 +9,10 @@ Library: C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\Burst
 --target-framework=NetFramework
 --linker-options=PdbAltPath="빵야빵야_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
---temp-folder=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\Burst
---key-folder=C:/Program Files/6000.0.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
---decode-folder=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Library\Burst
---output=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
+--temp-folder=F:\sparta_final\bang_game_client\Temp\Burst
+--key-folder=C:/Program Files/Unity/Hub/Editor/6000.0.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--decode-folder=F:\sparta_final\bang_game_client\Library\Burst
+--output=F:\sparta_final\bang_game_client\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[UnityEngine.Rendering.GPUInstanceDataBuffer+ConvertCPUInstancesToGPUInstancesJob, Unity.RenderPipelines.GPUDriven.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.GPUInstanceDataBuffer+ConvertCPUInstancesToGPUInstancesJob&, Unity.RenderPipelines.GPUDriven.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--a917331aad44b603aa293fb2ddd84845
@@ -81,10 +81,10 @@ Library: C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\Burst
 --target-framework=NetFramework
 --linker-options=PdbAltPath="빵야빵야_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
---temp-folder=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\Burst
---key-folder=C:/Program Files/6000.0.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
---decode-folder=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Library\Burst
---output=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
+--temp-folder=F:\sparta_final\bang_game_client\Temp\Burst
+--key-folder=C:/Program Files/Unity/Hub/Editor/6000.0.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--decode-folder=F:\sparta_final\bang_game_client\Library\Burst
+--output=F:\sparta_final\bang_game_client\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 
 --method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[UnityEngine.Rendering.GPUInstanceDataBuffer+ConvertCPUInstancesToGPUInstancesJob, Unity.RenderPipelines.GPUDriven.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.GPUInstanceDataBuffer+ConvertCPUInstancesToGPUInstancesJob&, Unity.RenderPipelines.GPUDriven.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--a917331aad44b603aa293fb2ddd84845
@@ -155,10 +155,10 @@ Library: C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\Burst
 --float-mode=Fast
 --linker-options=PdbAltPath="빵야빵야_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
---temp-folder=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\Burst
---key-folder=C:/Program Files/6000.0.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
---decode-folder=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Library\Burst
---output=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
+--temp-folder=F:\sparta_final\bang_game_client\Temp\Burst
+--key-folder=C:/Program Files/Unity/Hub/Editor/6000.0.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--decode-folder=F:\sparta_final\bang_game_client\Library\Burst
+--output=F:\sparta_final\bang_game_client\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 
 --method=Unity.Jobs.IJobForExtensions+ForJobStruct`1[[UnityEngine.Rendering.Universal.ZBinningJob, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.ZBinningJob&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--77fc393cb521ac129b1392d4eb94d29a
@@ -175,10 +175,10 @@ Library: C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\Burst
 --float-mode=Fast
 --linker-options=PdbAltPath="빵야빵야_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
---temp-folder=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\Burst
---key-folder=C:/Program Files/6000.0.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
---decode-folder=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Library\Burst
---output=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
+--temp-folder=F:\sparta_final\bang_game_client\Temp\Burst
+--key-folder=C:/Program Files/Unity/Hub/Editor/6000.0.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--decode-folder=F:\sparta_final\bang_game_client\Library\Burst
+--output=F:\sparta_final\bang_game_client\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 
 --method=Unity.Jobs.IJobForExtensions+ForJobStruct`1[[UnityEngine.Rendering.Universal.ZBinningJob, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.ZBinningJob&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--77fc393cb521ac129b1392d4eb94d29a
@@ -193,10 +193,10 @@ Library: C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\Burst
 --target-framework=NetFramework
 --linker-options=PdbAltPath="빵야빵야_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
---temp-folder=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\Burst
---key-folder=C:/Program Files/6000.0.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
---decode-folder=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Library\Burst
---output=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
+--temp-folder=F:\sparta_final\bang_game_client\Temp\Burst
+--key-folder=C:/Program Files/Unity/Hub/Editor/6000.0.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--decode-folder=F:\sparta_final\bang_game_client\Library\Burst
+--output=F:\sparta_final\bang_game_client\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10
@@ -309,10 +309,10 @@ Library: C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\Burst
 --target-framework=NetFramework
 --linker-options=PdbAltPath="빵야빵야_Data/Plugins/x86_64/lib_burst_generated.pdb"
 --generate-link-xml=Temp\burst.link.xml
---temp-folder=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\Burst
---key-folder=C:/Program Files/6000.0.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
---decode-folder=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Library\Burst
---output=C:\Users\jini\Desktop\final_project\client\bang_game_client2\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
+--temp-folder=F:\sparta_final\bang_game_client\Temp\Burst
+--key-folder=C:/Program Files/Unity/Hub/Editor/6000.0.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport
+--decode-folder=F:\sparta_final\bang_game_client\Library\Burst
+--output=F:\sparta_final\bang_game_client\Temp\BurstOutput\Data\Plugins\x86_64\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10
