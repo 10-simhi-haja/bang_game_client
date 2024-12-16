@@ -253,6 +253,9 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
                 case CardType.Shield:
                     AudioManager.instance.PlayOneShot("shield");
                     break;
+                case CardType.DeathMatch:
+                    AudioManager.instance.PlayOneShot("bbang");
+                    break;
                 case CardType.Vaccine:
                     AudioManager.instance.PlayOneShot("covid");
                     break;
@@ -300,6 +303,9 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
             switch (response.CardType)
             {
                 case CardType.Bbang:
+                    AudioManager.instance.PlayOneShot("bbang");
+                    break;
+                case CardType.DeathMatch:
                     AudioManager.instance.PlayOneShot("bbang");
                     break;
                 case CardType.Shield:
@@ -617,6 +623,7 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
         UserInfo.myInfo.UpdateHandCard(response.HandCards);
         UIGame.instance.SetSelectCard();
         UIGame.instance.SetDeckCount();
+        AudioManager.instance.PlayOneShot("gmqtn");
     }
 
     // ������ ������Ʈ
