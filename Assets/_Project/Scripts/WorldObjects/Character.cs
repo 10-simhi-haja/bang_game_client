@@ -22,6 +22,9 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
     [SerializeField] private GameObject death;
     [SerializeField] private CircleCollider2D collider;
     [SerializeField] public GameObject stop;
+    // gaugeBar
+    [SerializeField] private Image gaugeBar;
+
 
     [SerializeField] private float speed;
     [SerializeField] private float baseSpeed = 3;
@@ -128,7 +131,7 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
 
     public void OnVisibleMinimapIcon(bool visible)
     {
-        if(characterType == eCharacterType.non_playable)
+        if (characterType == eCharacterType.non_playable)
             minimapIcon.gameObject.SetActive(visible && !isInside);
         else
             minimapIcon.gameObject.SetActive(false);
@@ -190,9 +193,9 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.TryGetComponent<Character>(out var character))
+        if (collision.gameObject.TryGetComponent<Character>(out var character))
         {
-            if(!SocketManager.instance.isConnected && character == GameManager.instance.userCharacter &&
+            if (!SocketManager.instance.isConnected && character == GameManager.instance.userCharacter &&
                 userInfo.handCards.Find(obj => obj.rcode == "CAD00001"))
             {
                 GameManager.instance.SendSocketUseCard(character.userInfo, userInfo, "CAD00001");
@@ -200,41 +203,60 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
         }
     }
 
-    private void Update()
+    private void UpdateGaugeUI()
     {
-        if(fsm != null)
-            fsm.UpdateState();
-
-        if (isDebuffed)
+        if (gaugeBar != null)
         {
-            debuffTimer += Time.deltaTime;
-            if (debuffTimer >= debuffDuration)
+            gaugeBar.gameObject.SetActive(isPlayable);
+
+            if (isPlayable)
             {
-                debuffTimer = 0f;
-                isDebuffed = false;
-                speed = baseSpeed;
+                gaugeBar.fillAmount = currentGauge / maxGauge;
             }
         }
-        else
+    }
+
+    private void Update()
+    {
+        if (fsm != null)
+            fsm.UpdateState();
+        if (isPlayable)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (isDebuffed)
             {
-                speed = boostSpeed;
-                currentGauge += Time.deltaTime * 20f;
-                if (currentGauge >= maxGauge)
+                gaugeBar.color = Color.red;
+                debuffTimer += Time.deltaTime;
+                if (debuffTimer >= debuffDuration)
                 {
-                    isDebuffed = true;
-                    speed = debuffSpeed;
+                    debuffTimer = 0f;
+                    isDebuffed = false;
+                    speed = baseSpeed;
                 }
             }
             else
             {
-                speed = baseSpeed;
-                currentGauge -= Time.deltaTime * gaugeDecayRate;
-            }
+                gaugeBar.color = Color.green;
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    speed = boostSpeed;
+                    currentGauge += Time.deltaTime * 20f;
+                    if (currentGauge >= maxGauge)
+                    {
+                        isDebuffed = true;
+                        speed = debuffSpeed;
+                    }
+                }
+                else
+                {
+                    speed = baseSpeed;
+                    currentGauge -= Time.deltaTime * gaugeDecayRate;
+                }
 
-            currentGauge = Mathf.Clamp(currentGauge, 0, maxGauge);
+                currentGauge = Mathf.Clamp(currentGauge, 0, maxGauge);
+            }
+            UpdateGaugeUI();
         }
+        
     }
 
     public async void SetDeath()
