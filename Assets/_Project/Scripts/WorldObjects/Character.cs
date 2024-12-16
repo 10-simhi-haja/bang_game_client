@@ -33,6 +33,10 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
     [SerializeField] private float maxGauge = 100;
     [SerializeField] private float gaugeDecayRate = 5;
     [SerializeField] private float debuffDuration = 2;
+    // bullet
+    [SerializeField] private GameObject bulletPrefab;  // ì´ì•Œ í”„ë¦¬íŒ¹
+    [SerializeField] private Transform firePoint;      // ì´ì•Œ ë°œì‚¬ ìœ„ì¹˜
+    [SerializeField] private float bulletSpeed = 10f;  // ì´ì•Œ ì†ë„
 
     private float currentGauge = 0;
     private bool isDebuffed = false;
@@ -171,7 +175,7 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
             isInside = true;
             if (userInfo != null)
                 OnVisibleMinimapIcon(Util.GetDistance(UserInfo.myInfo.index, userInfo.index, DataManager.instance.users.Count)
-                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // °¡´ÉÇÑ °Å¸®¿¡ ÀÖ´Â À¯Àú ¾ÆÀÌÄÜ¸¸ Ç¥½Ã
+                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ü¸ï¿½ Ç¥ï¿½ï¿½
 
         }
     }
@@ -187,7 +191,7 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
             isInside = false;
             if (userInfo != null)
                 OnVisibleMinimapIcon(Util.GetDistance(UserInfo.myInfo.index, userInfo.index, DataManager.instance.users.Count)
-                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // °¡´ÉÇÑ °Å¸®¿¡ ÀÖ´Â À¯Àú ¾ÆÀÌÄÜ¸¸ Ç¥½Ã
+                    + userInfo.slotFar <= UserInfo.myInfo.slotRange && userInfo.id != UserInfo.myInfo.id); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ü¸ï¿½ Ç¥ï¿½ï¿½
         }
     }
 
@@ -216,12 +220,37 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
         }
     }
 
+    private void Fire()
+    {
+        // ì´ì•Œ í”„ë¦¬íŒ¹ ìƒì„±
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        
+        // ì´ì•Œ ë°©í–¥ ì„¤ì •
+        Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
+        Vector2 fireDirection = dir.normalized; // ìºë¦­í„°ê°€ ë°”ë¼ë³´ëŠ” ë°©í–¥
+        if (fireDirection == Vector2.zero)
+        {
+            // ì •ì§€ ìƒíƒœì¼ ê²½ìš° ê¸°ë³¸ ë°©í–¥ ì§€ì • (ì˜¤ë¥¸ìª½)
+            fireDirection = Vector2.right;
+        }
+        bulletRigidbody.linearVelocity = fireDirection * bulletSpeed;
+
+        // ì´ì•Œ íšŒì „ ì„¤ì • (ë°œì‚¬ ë°©í–¥ì— ë”°ë¼ íšŒì „)
+        float angle = Mathf.Atan2(fireDirection.y, fireDirection.x) * Mathf.Rad2Deg;
+        bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
     private void Update()
     {
         if (fsm != null)
             fsm.UpdateState();
+
         if (isPlayable)
         {
+            if (Input.GetKeyDown(KeyCode.Space)) // Space í‚¤ ì…ë ¥ ê°ì§€
+            {
+                Fire();
+            }
             if (isDebuffed)
             {
                 gaugeBar.color = Color.red;
@@ -256,7 +285,6 @@ public class Character : FSMController<CharacterState, CharacterFSM, CharacterDa
             }
             UpdateGaugeUI();
         }
-        
     }
 
     public async void SetDeath()
