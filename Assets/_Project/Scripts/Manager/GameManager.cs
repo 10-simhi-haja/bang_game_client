@@ -386,12 +386,12 @@ public class GameManager : MonoSingleton<GameManager>
                     break;
                 case "CAD00011":
                     {
-
+                        AudioManager.instance.PlayOneShot("gold");
                     }
                     break;
                 case "CAD00012":
                     {
-
+                        AudioManager.instance.PlayOneShot("gold");
                     }
                     break;
                 case "CAD00021":
