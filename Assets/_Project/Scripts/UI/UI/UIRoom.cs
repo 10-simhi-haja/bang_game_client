@@ -19,7 +19,7 @@ public class UIRoom : UIBase
 
     private List<UserInfo> users = new List<UserInfo>();
     private int maxUserCount;
-    RoomData roomData;
+    static public RoomData roomData;
 
     public override void Opened(object[] param)
     {
@@ -29,7 +29,7 @@ public class UIRoom : UIBase
         var channelName = roomData.Id.ToString();
         Debug.Log("음성채널 참가");
         Debug.Log(channelName);
-        VivoxController.Instance.JoinVoiceChannel(channelName);
+        // VivoxController.Instance.JoinVoiceChannel(channelName);
     }
 
     public void SetRoomInfo(RoomData roomData)
@@ -104,6 +104,8 @@ public class UIRoom : UIBase
 
     public void OnClickGameStart()
     {
+        var channelName = roomData.Id.ToString();
+        // VivoxController.Instance.LeaveChannelAsync(channelName);
         //if (users.Count < 4) return;
         if (SocketManager.instance.isConnected)
         {
