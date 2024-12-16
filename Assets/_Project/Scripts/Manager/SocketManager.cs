@@ -214,27 +214,48 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
         var response = gamePacket.UseCardNotification;
         var card = response.CardType.GetCardData();
     
-        // 빵 카드 사용시 총소리 재생
-        if (response.CardType == CardType.Bbang) 
+        // 모든 유저에게 사운드 들림
+        if (response.CardType == CardType.BigBbang)
         {
-            Debug.Log(AudioManager.instance.isInit);
-            AudioManager.instance.PlayOneShot("bbang");
+            AudioManager.instance.PlayOneShot("ddd");
         }
 
-        if (response.CardType == CardType.Shield)
+        if (response.CardType == CardType.Guerrilla)
         {
-            AudioManager.instance.PlayOneShot("shield");
+            AudioManager.instance.PlayOneShot("ddd");
         }
         
         if (response.CardType == CardType.FleaMarket)
         {
             AudioManager.instance.PlayOneShot("market");
         }
-
+        if (response.CardType == CardType.Call119)
+        {
+            AudioManager.instance.PlayOneShot("119-1");
+        }
+        if (response.CardType == CardType.ContainmentUnit)
+        {
+            AudioManager.instance.PlayOneShot("sss");
+        }
+        if (response.CardType == CardType.Bomb)
+        {
+            AudioManager.instance.PlayOneShot("bomb");
+        }
+        
+        // 아이디 값으로 해당 유저만 소리가 출력되게 
         if (response.UserId == UserInfo.myInfo.id)
         {
             switch (response.CardType)
             {
+                case CardType.Bbang:
+                    AudioManager.instance.PlayOneShot("bbang");
+                    break;
+                case CardType.Shield:
+                    AudioManager.instance.PlayOneShot("shield");
+                    break;
+                case CardType.Vaccine:
+                    AudioManager.instance.PlayOneShot("covid");
+                    break;
                 case CardType.HandGun:
                     AudioManager.instance.PlayOneShot("weapon");
                     break;
@@ -264,6 +285,31 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
                     break;
                 case CardType.WinLottery:
                     AudioManager.instance.PlayOneShot("gold");
+                    break;
+                case CardType.Absorb:
+                    AudioManager.instance.PlayOneShot("gmqtn");
+                    break;
+                case CardType.Hallucination:
+                    AudioManager.instance.PlayOneShot("gmqtn");
+                    break;
+            }
+        }
+        // 아이디 값으로 타겟 유저만 소리가 출력되게 
+        if (response.TargetUserId == UserInfo.myInfo.id)
+        {
+            switch (response.CardType)
+            {
+                case CardType.Bbang:
+                    AudioManager.instance.PlayOneShot("bbang");
+                    break;
+                case CardType.Shield:
+                    AudioManager.instance.PlayOneShot("shield");
+                    break;
+                case CardType.Absorb:
+                    AudioManager.instance.PlayOneShot("gmqtn");
+                    break;
+                case CardType.Hallucination:
+                    AudioManager.instance.PlayOneShot("gmqtn");
                     break;
             }
         }
@@ -656,6 +702,7 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
                     GameManager.instance.virtualCamera.Target.TrackingTarget = target;
                     var beam = Instantiate(await ResourceManager.instance.LoadAsset<Transform>("Beam", eAddressableType.Prefabs));
                     beam.transform.position = target.position;
+                    AudioManager.instance.PlayOneShot("target");
                 }
                 break;
             case AnimationType.ShieldAnimation:
