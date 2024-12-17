@@ -23,7 +23,7 @@ public class PopupRemoveCardSelection : UIListBase<Card>
     public override void Opened(object[] param)
     {
         targetUserInfo = UserInfo.myInfo;
-        count.text = string.Format("¼±ÅÃ °³¼ö : {0} ÇÊ¿ä °³¼ö : {1}", selectCards.Count, Mathf.Max(0, UserInfo.myInfo.handCards.Count - UserInfo.myInfo.hp));
+        count.text = string.Format("ì„ íƒ ê°œìˆ˜ : {0} í•„ìš” ê°œìˆ˜ : {1}", selectCards.Count, Mathf.Max(0, UserInfo.myInfo.handCards.Count - UserInfo.myInfo.hp));
         SetList();
     }
 
@@ -120,7 +120,7 @@ public class PopupRemoveCardSelection : UIListBase<Card>
             selectCards.Add(card);
             card.OnSelect(true);
         }
-        count.text = string.Format("¼±ÅÃ °³¼ö : {0} ÇÊ¿ä °³¼ö : {1}", selectCards.Count, Mathf.Max(0, UserInfo.myInfo.handCards.Count - UserInfo.myInfo.hp));
+        count.text = string.Format("ì„ íƒ ê°œìˆ˜ : {0} í•„ìš” ê°œìˆ˜ : {1}", selectCards.Count, Mathf.Max(0, UserInfo.myInfo.handCards.Count - UserInfo.myInfo.hp));
         use.gameObject.SetActive(UserInfo.myInfo.handCards.Count - selectCards.Count == UserInfo.myInfo.hp);
         count.gameObject.SetActive(UserInfo.myInfo.handCards.Count - selectCards.Count != UserInfo.myInfo.hp);
     }

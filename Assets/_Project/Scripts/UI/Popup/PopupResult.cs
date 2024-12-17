@@ -25,7 +25,7 @@ public class PopupResult : UIBase
     [SerializeField] private TMP_Text roleText;
     [SerializeField] private GameObject exit;
 
-    private string[] roleTexts = new string[3] { "º¸µğ°¡µå¿Í Å¸°Ù", "È÷Æ®¸Ç", "½ÎÀÌÄÚÆĞ½º" };
+    private string[] roleTexts = new string[3] { "ë³´ë””ê°€ë“œì™€ íƒ€ê²Ÿ", "íˆíŠ¸ë§¨", "ì‹¸ì´ì½”íŒ¨ìŠ¤" };
 
     public override async void Opened(object[] param)
     {

@@ -124,7 +124,7 @@ public class PopupDeck : UIListBase<Card>
         var card = UserInfo.myInfo.handCards[idx];
         if (card.rcode == "CAD00005")
         {
-            UIManager.ShowAlert("´©±¸¿¡°Ô »ç¿ë ÇÏ½Ã°Ú½À´Ï±î?", "119 È£Ãâ", "³ª¿¡°Ô", "¸ðµÎ¿¡°Ô", () =>
+            UIManager.ShowAlert("ëˆ„êµ¬ì—ê²Œ ì‚¬ìš© í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "119 í˜¸ì¶œ", "ë‚˜ì—ê²Œ", "ëª¨ë‘ì—ê²Œ", () =>
             {
                 UserInfo.myInfo.OnUseCard(idx);
                 GameManager.instance.SendSocketUseCard(UserInfo.myInfo, UserInfo.myInfo, card.rcode);
