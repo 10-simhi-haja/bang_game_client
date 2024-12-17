@@ -12,7 +12,7 @@ public class PopupRoomCreate : UIBase
 
     public override void Opened(object[] param)
     {
-        var roomNameSample = new List<string>() { "³Ê¸¸ ¿À¸é °í!", "°³³äÀÖ´Â »ç¶÷¸¸", "¾îµô ³ÑºÁ?", "Áñ°Å¿î °ÔÀÓ ÇÑÆÇ ÇÏ½¯?", "»§¾ß! »§¾ß!" };
+        var roomNameSample = new List<string>() { "ë„ˆë§Œ ì˜¤ë©´ ê³ !", "ê°œë…ìˆëŠ” ì‚¬ëŒë§Œ", "ì–´ë”œ ë„˜ë´?", "ì¦ê±°ìš´ ê²Œì„ í•œíŒ í•˜ì‰´?", "ë¹µì•¼! ë¹µì•¼!" };
         roomName.text = roomNameSample.RandomValue();
     }
 

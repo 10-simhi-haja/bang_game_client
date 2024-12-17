@@ -41,8 +41,8 @@ public partial class UserInfo
 
     public int index { get => DataManager.instance.users.FindIndex(obj => obj.id == id); }
 
-    static List<string> firstName = new List<string>() { "¹ßºü¸¥", "½ÅÁßÇÑ", "°³±¸Áø", "¸ÚÀïÀÌ", "±Í¿©¿î", "ÇÚ¼¶ÇÑ", "¸ÀÀÖ´Â", "Àç¹Õ´Â" };
-    static List<string> lastName = new List<string>() { "Á¦ÀÌÁö", "ÄÉÅäÇÇ", "ÇÇÄ«Ãò", "¸¶ÀÚ¿ë", "¸ğ·¡¼ºµ¥½º", "¶óÀÌ¾ğ", "»ó¾î±º", "¸£ÅºÀÌ", "°ÅºÏ¼ÕÀÌ´ç" };
+    static List<string> firstName = new List<string>() { "ë°œë¹ ë¥¸", "ì‹ ì¤‘í•œ", "ê°œêµ¬ì§„", "ë©‹ìŸì´", "ê·€ì—¬ìš´", "í•¸ì„¬í•œ", "ë§›ìˆëŠ”", "ì¬ë°ŒëŠ”" };
+    static List<string> lastName = new List<string>() { "ì œì´ì§€", "ì¼€í† í”¼", "í”¼ì¹´ì¸„", "ë§ˆììš©", "ëª¨ë˜ì„±ë°ìŠ¤", "ë¼ì´ì–¸", "ìƒì–´êµ°", "ë¥´íƒ„ì´", "ê±°ë¶ì†ì´ë‹¹" };
 
     public UserInfo()
     {
