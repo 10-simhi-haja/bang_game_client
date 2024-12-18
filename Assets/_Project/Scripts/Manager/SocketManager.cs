@@ -146,7 +146,9 @@ public class SocketManager : TCPSocketManagerBase<SocketManager>
     public async void GameStartNotification(GamePacket gamePacket)
     {
         var response = gamePacket.GameStartNotification;
-        
+        var channelName = UIRoom.roomData.Id.ToString();
+        VivoxController.Instance.JoinVoiceChannel(channelName);
+
         await SceneManager.LoadSceneAsync("Game");
         while (!UIManager.IsOpened<UIGame>())
         {
